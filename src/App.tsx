@@ -1,11 +1,7 @@
-import WalletConnectionButton from './components/WalletConnectButton';
+import Router from './router';
 
 function App() {
-  return (
-    <div>
-      <WalletConnectionButton label="지갑 연결하기" />
-    </div>
-  );
+  return <Router />;
 }
 
 export default App;

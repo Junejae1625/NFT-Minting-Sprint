@@ -1,12 +1,11 @@
-import styled from 'styled-components';
-
-const Container = styled.div`
-  width: 80vw;
-  margin: 0 auto;
-`;
+import WalletConnectionButton from './components/WalletConnectButton';
 
 function App() {
-  return <Container>App</Container>;
+  return (
+    <div>
+      <WalletConnectionButton label="지갑 연결하기" />
+    </div>
+  );
 }
 
 export default App;

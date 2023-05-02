@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import AWS from 'aws-sdk';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import NameInputs from '@/components/NameInputs';
 import * as NCS from './NftCreate.Styles';
 import WalletConnectionButton from '@/components/WalletConnectButton';
@@ -8,10 +9,12 @@ import useOnChangeFile from '@/hooks/useOnChangeFile';
 import MakeButton from '@/components/MakeButton';
 import { RootState } from '@/store';
 import { makeNft } from '@/contracts/contract';
+import { result } from '@/store/slices/result';
 
 function NftCreate() {
   const inputRef = useRef<HTMLInputElement>(null);
-
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { address } = useSelector((state: RootState) => state.wallet);
 
   const [name, setName] = useState('');
@@ -52,8 +55,17 @@ function NftCreate() {
       },
     });
     uploadJSON.promise();
-    const result = await makeNft(address, import.meta.env.VITE_AWS_S3_URL + name);
-    console.log(result);
+    const resultNft = await makeNft(address, import.meta.env.VITE_AWS_S3_URL + name);
+    dispatch(
+      result({
+        data: resultNft.data,
+        hash: resultNft.hash,
+        nonce: resultNft.nonce,
+        to: resultNft.to,
+      }),
+    );
+
+    navigate('/complete');
   };
   return (
     <NCS.Wrapper>

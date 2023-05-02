@@ -7,8 +7,6 @@ import App from './App';
 import { chains, wagmiClient } from './config/rainbowKitConfig';
 import { store } from './store';
 
-import './styles/index.css';
-
 const container = document.getElementById('root') as HTMLElement;
 const root = createRoot(container);
 

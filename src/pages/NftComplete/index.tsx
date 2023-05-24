@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { RootState } from '@/store';
-import { Wrapper } from './NftComplete.styles';
+import { Container, Wrapper, Title, Result } from './NftComplete.styles';
 
 function NftComplete() {
   const { data, hash, nonce, to } = useSelector((state: RootState) => state.result);
@@ -19,19 +19,30 @@ function NftComplete() {
       to,
     };
     setResults(temp);
-    console.log(data, hash, nonce, to);
   }, []);
 
   return (
     <Wrapper>
-      <div>data</div>
-      <div> {results.data}</div>
-      <div>hash </div>
-      <div> {results.hash}</div>
-      <div>nonce</div>
-      <div> {results.nonce}</div>
-      <div>to</div>
-      <div> {results.to}</div>
+      <Container>
+        <div>
+          <Title>data</Title>
+          <Result>
+            {results.data ? `${results.data.slice(0, 20)}...` : '0X000000000000000000000000000000'}
+          </Result>
+        </div>
+        <div>
+          <Title>hash </Title>
+          <Result> {results.hash}</Result>
+        </div>
+        <div>
+          <Title>nonce</Title>
+          <Result> {results.nonce}</Result>
+        </div>
+        <div>
+          <Title>to</Title>
+          <Result> {results.to}</Result>
+        </div>
+      </Container>
     </Wrapper>
   );
 }

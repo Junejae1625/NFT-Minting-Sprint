@@ -6,6 +6,12 @@
 - 원하는 사진과 이름, 설명을 입력 후에 'Make NFT' 버튼을 누릅니다.
 - 가스비를 지불하면 로그인한 지갑 주소로 NFT가 만들어집니다.
 
+## 부연 설명
+
+- 해당 프로젝트는 'Polygon Testnet(Mumbai)'로 진행되었습니다.
+- 블록체인과 통신을 위해 'Alchemy'를 사용하였습니다.
+- NFT를 생성하시게 되면 미리 배포되어있는 Contract Address에 추가됩니다.
+
 ## .env파일
 
 VITE_ALCHEMY_WS </br>
